@@ -28,3 +28,11 @@ axios
   .catch(function (error) {
     console.error(error);
   });
+
+//strings:
+/* How do you store strings: 
+They are represented in an array of characters
+SO you can use different array methods to take values from the array
+(length, select certain characters, seperate the string by values, how many words there are, etc.) 
+
+*/
