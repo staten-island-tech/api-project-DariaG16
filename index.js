@@ -1,5 +1,4 @@
-https://valorant-api.com/v1/agents
-
+// https://valorant-api.com/v1/agents
 
 /* function greet(name) {
   const greetPromise = new Promise(function (resolve, reject) {
