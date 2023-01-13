@@ -1,5 +1,51 @@
 :root {
+  --sea: #7ae7c7;
+  --grape: #a9b672;
+  --rain: #6c809a;
+  --plum: #646e91;
+  --white: #e9e3e6;
 }
 body {
-  background-color: red;
+  background-color: var(--rain);
+}
+.cards {
+  font-size: 30px;
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  width: 40%;
+  background-color: var(--plum);
+  color: var(--white);
+  padding: 10px 40px;
+  border-radius: 40px;
+  border: var(--white) solid 3px;
+}
+button {
+  all: unset;
+  cursor: pointer;
+  width: 100px;
+  height: 53px;
+  background-color: var(--rain);
+  border: var(--white) solid 3px;
+}
+#form {
+  font-size: 30px;
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  width: 45%;
+  background-color: var(--plum);
+  color: var(--white);
+  padding: 10px 40px;
+  border-radius: 40px;
+  border: var(--white) solid 3px;
+}
+#query {
+  height: 60px;
+  font-size: 20px;
+  border: var(--white) solid 3px;
+}
+.author {
+  text-align: right;
+  margin: 40px;
 }
