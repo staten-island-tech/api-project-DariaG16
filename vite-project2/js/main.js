@@ -1,6 +1,17 @@
 import "../styles/style.css";
 const URL = `https://poetrydb.org/title/6/lines.json`;
-
+let audio = new Audio("https://www.youtube.com/watch?v=PjX67xmthbg");
+const DOMSelectors = {
+  button: document.querySelector(".button"),
+  form: document.querySelector("#form"),
+  cards: document.querySelector(".cards"),
+  author: document.querySelector("#Author"),
+  contents: document.querySelector("#Contents"),
+  title: document.querySelector("#Title"),
+  amountOfLines: document.querySelector("#AmountOfLines"),
+  random: document.querySelector("#Random"),
+  search: document.querySelector("#search"),
+};
 async function getData(URL) {
   try {
     const response = await fetch(URL);

@@ -1,12 +1,29 @@
 :root {
-  --sea: #7ae7c7;
-  --grape: #a9b672;
+  --sea: #74c3c9;
+  --deep: #3f5885;
   --rain: #6c809a;
   --plum: #646e91;
-  --white: #e9e3e6;
+  --white: #c7cde2;
+
+  /*intentions*/
+  --details: var(--white);
+  --cardBacco: var(--plum);
+  --bacco: var(--rain);
+  --contrast: var(--deep);
+  --hover: var(--sea);
 }
 body {
-  background-color: var(--rain);
+  background-color: var(--bacco);
+}
+::-webkit-scrollbar {
+  width: 30px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--contrast);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
 }
 .cards {
   font-size: 30px;
@@ -14,36 +31,60 @@ body {
   margin: auto;
   margin-top: 50px;
   width: 40%;
-  background-color: var(--plum);
-  color: var(--white);
+  background-color: var(--cardBacco);
+  color: var(--details);
   padding: 10px 40px;
   border-radius: 40px;
-  border: var(--white) solid 3px;
+  border: var(--details) solid 3px;
 }
-button {
-  all: unset;
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+}
+.button {
+  background-color: var(--contrast);
+  font-size: 23px;
+  text-align: center;
+  margin: 30px;
+  width: 17%;
+  color: var(--details);
+  padding: 10px 40px;
+  border-radius: 40px;
+  border-color: transparent;
+}
+.button:hover {
+  background-color: var(--hover);
+  color: var(--contrast);
   cursor: pointer;
-  width: 100px;
-  height: 53px;
-  background-color: var(--rain);
-  border: var(--white) solid 3px;
 }
 #form {
-  font-size: 30px;
+  font-size: 33px;
   text-align: center;
   margin: auto;
-  margin-top: 50px;
   width: 45%;
-  background-color: var(--plum);
-  color: var(--white);
-  padding: 10px 40px;
-  border-radius: 40px;
-  border: var(--white) solid 3px;
+  background-color: var(--cardBacco);
+  color: var(--details);
+  padding: 20px 40px;
+  border-radius: 20px;
+  border: var(--details) solid 3px;
+  display: flex;
+  justify-content: center;
+}
+#search {
+  all: unset;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-image: url("https://www.reonomy.com/wp-content/uploads/2018/06/icon_search_purple.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--details);
 }
 #query {
-  height: 60px;
+  height: 40px;
   font-size: 20px;
-  border: var(--white) solid 3px;
 }
 .author {
   text-align: right;
