@@ -1,6 +1,8 @@
+//WAVE TOOL TO CHECK
+let filterBy = "author";
+let input = "edgar allan poe";
 import "../styles/style.css";
-const URL = `https://poetrydb.org/title/6/lines.json`;
-let audio = new Audio("https://www.youtube.com/watch?v=PjX67xmthbg");
+//let audio = new Audio("https://www.youtube.com/watch?v=PjX67xmthbg");
 const DOMSelectors = {
   button: document.querySelector(".button"),
   form: document.querySelector("#form"),
@@ -12,16 +14,20 @@ const DOMSelectors = {
   random: document.querySelector("#Random"),
   search: document.querySelector("#search"),
 };
-async function getData(URL) {
+
+async function getData() {
   try {
-    const response = await fetch(URL);
+    const response = await fetch(`https://poetrydb.org/${filterBy}/${input}`);
     const everything = await response.json(); //makes the data into a json object u can use
     console.log(everything);
+    makeCards(0);
   } catch (error) {
     console.log(error);
   }
 }
-getData(URL);
+getData(`https://poetrydb.org/${filterBy}/${input}`);
+
+DOMSelectors.author.addEventListener("click", console.log("hi"));
 
 function removeCard() {
   const cards = document.querySelectorAll(".Category");
@@ -32,15 +38,11 @@ function removeCard() {
 }
 function makeCards(type) {
   removeCard();
-  type.forEach((cookies) =>
-    DOMselectors.everything.insertAdjacentHTML(
+  type.forEach((poems) =>
+    DOMselectors.form.insertAdjacentHTML(
       "beforeend",
       `<div class="Category cards" >
-    <h3>Type: ${idk1}</h3>
-    <h3>Rarity: ${idk2}</h3>
-    <h3>Useful In: ${idk3}</h3>
-    <img class="images" src="${idk4}" alt="${idk5}">
-    <h2>${idk6}</h2>
+    <h3>Type: ${poems.author}</h3>
     </div>`
     )
   );
