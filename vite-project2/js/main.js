@@ -1,6 +1,4 @@
 //WAVE TOOL TO CHECK
-let filterBy = "author";
-let input = "edgar allan poe";
 import "../styles/style.css";
 //let audio = new Audio("https://www.youtube.com/watch?v=PjX67xmthbg");
 const DOMSelectors = {
@@ -14,22 +12,25 @@ const DOMSelectors = {
   random: document.querySelector("#Random"),
   search: document.querySelector("#search"),
 };
-
+let choice = `author`;
+let filterBy = `${choice}`;
+let input = DOMSelectors.search.value;
 async function getData() {
   try {
     const response = await fetch(`https://poetrydb.org/${filterBy}/${input}`);
     const everything = await response.json(); //makes the data into a json object u can use
     console.log(everything);
-    makeCards(0);
   } catch (error) {
     console.log(error);
   }
 }
 getData(`https://poetrydb.org/${filterBy}/${input}`);
-
-DOMSelectors.author.addEventListener("click", console.log("hi"));
-
-function removeCard() {
+/* function crying() {
+  document.getElementById("Author").innerHTML += "First function was executed!";
+}
+DOMSelectors.contents.addEventListener("click", crying());
+ */
+/* function removeCard() {
   const cards = document.querySelectorAll(".Category");
   const cardsArray = Array.from(cards);
   cardsArray.forEach((cards) => {
@@ -38,7 +39,7 @@ function removeCard() {
 }
 function makeCards(type) {
   removeCard();
-  type.forEach((poems) =>
+  type.forEach((author) =>
     DOMselectors.form.insertAdjacentHTML(
       "beforeend",
       `<div class="Category cards" >
@@ -46,4 +47,4 @@ function makeCards(type) {
     </div>`
     )
   );
-}
+} */
