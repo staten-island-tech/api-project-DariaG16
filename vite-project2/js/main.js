@@ -12,6 +12,12 @@ const DOMSelectors = {
   title: document.querySelector("#Title"),
   amountOfLines: document.querySelector("#AmountOfLines"),
   random: document.querySelector("#Random"),
+  contentsbtn: document.querySelector("#Contents"),
+  titlebtn: document.querySelector("#Title"),
+  AOLbtn: document.querySelector("#AmountOfLines"),
+  randombtn: document.querySelector("#Random"),
+  search: document.querySelector("#search"),
+  searchtxt: document.querySelector("#searchbartxt"),
   search: document.querySelector("#search"),
 };
 
@@ -25,10 +31,21 @@ async function getData() {
     console.log(error);
   }
 }
+
 getData(`https://poetrydb.org/${filterBy}/${input}`);
 
 DOMSelectors.author.addEventListener("click", console.log("hi"));
+DOMSelectors.author.addEventListener("click", author);
+function author() {
+  console.log(`${URL}`);
+  // DOMSelectors.form.insertAdjacentHTML("afterend");
+}
 
+DOMSelectors.author.addEventListener("click", function () {
+  //when the button clicks, do this function:
+  // we get the value of whatever the user typed in the text box named "expression"
+  //makeCards(input);
+});
 function removeCard() {
   const cards = document.querySelectorAll(".Category");
   const cardsArray = Array.from(cards);
@@ -40,7 +57,7 @@ function makeCards(type) {
   removeCard();
   type.forEach((poems) =>
     DOMselectors.form.insertAdjacentHTML(
-      "beforeend",
+      "afterend",
       `<div class="Category cards" >
     <h3>Type: ${poems.author}</h3>
     </div>`

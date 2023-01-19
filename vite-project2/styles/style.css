@@ -37,7 +37,28 @@ body {
   border-radius: 40px;
   border: var(--details) solid 3px;
 }
-
+.sidebtns {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.btntop {
+  margin: 30px;
+  width: 17%;
+  padding: 10px 40px;
+}
+.sidebtn {
+  margin: 30px;
+  width: 50px;
+  height: 50px;
+  padding: 10px 10px;
+}
+.sidebtn:hover {
+  margin: 30px;
+  width: 17%;
+  padding: 10px 40px;
+}
 .categories {
   display: flex;
   justify-content: space-around;
