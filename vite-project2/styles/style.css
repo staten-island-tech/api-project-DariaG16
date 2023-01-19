@@ -4,15 +4,18 @@
   --rain: #6c809a;
   --plum: #646e91;
   --white: #c7cde2;
+  --pureWhite: #ffffff;
 
   /*intentions*/
+  --bleach: var(--pureWhite);
   --details: var(--white);
-  --cardBacco: var(--plum);
-  --bacco: var(--rain);
-  --contrast: var(--deep);
   --hover: var(--sea);
+  --bacco: var(--rain);
+  --cardBacco: var(--plum);
+  --contrast: var(--deep);
 }
 body {
+  font-family: "Lora", serif;
   background-color: var(--bacco);
 }
 ::-webkit-scrollbar {
@@ -24,6 +27,14 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--hover);
+}
+.heading {
+  background-image: ;
+  font-size: 55px;
+  color: var(--bleach);
+  background-color: var(--contrast);
+  width: 80%;
+  margin: auto;
 }
 .cards {
   font-size: 30px;

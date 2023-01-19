@@ -18,34 +18,39 @@ const DOMSelectors = {
   searchtxt: document.querySelector("#searchbartxt"),
   search: document.querySelector("#search"),
 };
-let choice = `author`;
-let filterBy = `${choice}`;
-let input = DOMSelectors.search.value;
+DOMSelectors.author.addEventListener("click", function () {
+  let filterBy = "author";
+  return filterBy;
+  getData();
+});
+DOMSelectors.search.addEventListener("click", function () {
+  let input = DOMSelectors.form.value;
+  console.log(input);
+});
 async function getData() {
   try {
-    const response = await fetch(`https://poetrydb.org/${filterBy}/${input}`);
+    const response = await fetch(
+      `https://poetrydb.org/${filterBy}/edgar allan poe`
+    );
     const everything = await response.json(); //makes the data into a json object u can use
     console.log(everything);
   } catch (error) {
     console.log(error);
   }
 }
+//getData(`https://poetrydb.org/${filterBy}/${input}`);
 
-getData(`https://poetrydb.org/${filterBy}/${input}`);
-
-DOMSelectors.author.addEventListener("click", console.log("hi"));
-DOMSelectors.author.addEventListener("click", author);
+/* DOMSelectors.author.addEventListener("click", author);
 function author() {
   console.log(`${URL}`);
   // DOMSelectors.form.insertAdjacentHTML("afterend");
 }
-
+ */
 DOMSelectors.author.addEventListener("click", function () {
   //when the button clicks, do this function:
   // we get the value of whatever the user typed in the text box named "expression"
   //makeCards(input);
 });
-function removeCard() 
 /* function crying() {
   document.getElementById("Author").innerHTML += "First function was executed!";
 }

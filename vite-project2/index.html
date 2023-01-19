@@ -5,8 +5,15 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <h1 class="categories heading">POETRY API</h1>
     <div class="categories">
       <button class="button btntop" id="Author">By Author</button>
       <button class="button btntop" id="Contents">By Contents</button>
@@ -15,12 +22,7 @@
       <button class="button btntop" id="Random">Random</button>
     </div>
     <form id="form" aria-label="Search for an Author">
-      <input
-        type="search"
-        id="query"
-        name="q"
-        placeholder="Search an Author..."
-      />
+      <input type="search" id="query" placeholder="Search an Author..." />
       <button id="search" value="Search button"></button>
     </form>
     <!-- <div class="sidebtns">
