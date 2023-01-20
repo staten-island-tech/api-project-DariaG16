@@ -60,13 +60,11 @@ function makeCards1(type) {
   );
 }
 function makeCards(something) {
-  something.forEach((name) =>
-    DOMSelectors.cards.insertAdjacentHTML(
-      "afterend",
-      `<div class="Category cards" >
-      <h3>Type: YES ${name.authors}</h3>
+  DOMSelectors.cards.insertAdjacentHTML(
+    "afterend",
+    `<div class="Category cards" >
+      <h3>list of authors${something.authors}</h3>
       </div>`
-    )
   );
 }
 function makeCardds(type) {
