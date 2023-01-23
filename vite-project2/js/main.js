@@ -29,9 +29,9 @@ DOMSelectors.search.addEventListener("click", function () {
   console.log(input);
 });
 
-async function getData() {
+async function getData(smh) {
   try {
-    let filterBy = "author";
+    let filterBy = `${smh}`;
     const response = await fetch(`https://poetrydb.org/${filterBy}`);
     const everything = await response.json(); //makes the data into a json object u can use
     console.log(everything);
@@ -42,12 +42,18 @@ async function getData() {
 }
 //getData(`https://poetrydb.org/${filterBy}/${input}`);
 
-DOMSelectors.author.addEventListener("click", function () {
+DOMSelectors.author.addEventListener("click", async function () {
+  getData("author");
   //when the button clicks, do this function:
   // we get the value of whatever the user typed in the text box named "expression"
   //makeCards(input);
 });
-
+DOMSelectors.titlebtn.addEventListener("click", async function () {
+  getData("title");
+  //when the button clicks, do this function:
+  // we get the value of whatever the user typed in the text box named "expression"
+  //makeCards(input);
+});
 /* function removeCard() {
   const cards = document.querySelectorAll(".Category");
   const cardsArray = Array.from(cards);
@@ -60,7 +66,7 @@ function makeCards(something) {
   DOMSelectors.cards.insertAdjacentHTML(
     "afterend",
     `<div class="Category cards" >
-      <h3>list of authors${something.authors}</h3>
+      <h3>Options: ${something.titles}</h3>
       </div>`
   );
 }
