@@ -31,7 +31,7 @@ DOMSelectors.search.addEventListener("click", function () {
 
 async function getData() {
   try {
-    let filterBy = "title";
+    let filterBy = "author";
     const response = await fetch(`https://poetrydb.org/${filterBy}`);
     const everything = await response.json(); //makes the data into a json object u can use
     console.log(everything);
@@ -60,7 +60,7 @@ function makeCards(something) {
   DOMSelectors.cards.insertAdjacentHTML(
     "afterend",
     `<div class="Category cards" >
-      <h3>list of authors${something.titles}</h3>
+      <h3>list of authors${something.authors}</h3>
       </div>`
   );
 }
