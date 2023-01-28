@@ -10,63 +10,105 @@ const DOMSelectors = {
   titlebtn: document.querySelector("#Title"),
   randombtn: document.querySelector("#Random"),
   search: document.querySelector("#search"),
-  searchtxt: document.querySelector("#searchbartxt"),
+  searchtxt: document.querySelector("#query"),
 };
 DOMSelectors.author.addEventListener("click", function () {
-  getData();
+  getData("author");
 });
 DOMSelectors.contentsbtn.addEventListener("click", function () {
-  getData();
+  getData("lines");
 });
 DOMSelectors.titlebtn.addEventListener("click", function () {
-  getData();
+  getData("title");
 });
 DOMSelectors.randombtn.addEventListener("click", function () {
-  getData();
+  getDataRandom("random");
 });
-DOMSelectors.search.addEventListener("click", function () {
-  let input = DOMSelectors.form.value;
+DOMSelectors.form.addEventListener("submit", function () {
+  event.preventDefault();
+  let input = DOMSelectors.searchtxt.value;
   console.log(input);
+  getData2("author", input);
 });
 
-async function getData(smh) {
+async function getData(filterBy) {
   try {
-    let filterBy = `${smh}`;
     const response = await fetch(`https://poetrydb.org/${filterBy}`);
     const everything = await response.json(); //makes the data into a json object u can use
     console.log(everything);
+    removeCard();
+    makeCards2(everything.titles);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getData2(filterBy, filter) {
+  try {
+    const response = await fetch(`https://poetrydb.org/${filterBy}/${filter}`);
+    const everything = await response.json(); //makes the data into a json object u can use
+    console.log(everything);
+    removeCard();
     makeCards(everything);
   } catch (error) {
     console.log(error);
   }
 }
 //getData(`https://poetrydb.org/${filterBy}/${input}`);
+async function getDataRandom(filterBy) {
+  try {
+    const response = await fetch(`https://poetrydb.org/${filterBy}`);
+    const everything = await response.json(); //makes the data into a json object u can use
+    console.log(everything);
+    removeCard();
+    makeCardsRandom(everything);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-DOMSelectors.author.addEventListener("click", async function () {
-  getData("author");
-  //when the button clicks, do this function:
-  // we get the value of whatever the user typed in the text box named "expression"
-  //makeCards(input);
-});
-DOMSelectors.titlebtn.addEventListener("click", async function () {
-  getData("title");
-  //when the button clicks, do this function:
-  // we get the value of whatever the user typed in the text box named "expression"
-  //makeCards(input);
-});
-/* function removeCard() {
+function makeCards(something) {
+  something.forEach((name) =>
+    DOMSelectors.cards.insertAdjacentHTML(
+      "afterend",
+      `<div class="Category cards" >
+      <h2>${name.title}</h2>
+      <p>
+        ${name.lines}
+      </p>
+
+      <h3 class="author">${name.author}`
+    )
+  );
+}
+function makeCards2(something) {
+  something.forEach((name) =>
+    DOMSelectors.cards.insertAdjacentHTML(
+      "afterend",
+      `<div class="Category cards" >
+      <h3>${name}</h3>`
+    )
+  );
+}
+function makeCardsRandom(something) {
+  something.forEach((array) =>
+    DOMSelectors.cards.insertAdjacentHTML(
+      "afterend",
+      `<div class="Category cards" >
+      <h2>${array.title}</h2>
+      <p>
+        ${array.lines}
+      </p>
+
+      <h3 class="author">${array.author}</h3>`
+    )
+  );
+}
+
+function removeCard() {
   const cards = document.querySelectorAll(".Category");
   const cardsArray = Array.from(cards);
   cardsArray.forEach((cards) => {
     cards.remove();
   });
-}*/
-
-function makeCards(something) {
-  DOMSelectors.cards.insertAdjacentHTML(
-    "afterend",
-    `<div class="Category cards" >
-      <h3>Options: ${something.titles}</h3>
-      </div>`
-  );
-}
+} //works
