@@ -40,7 +40,7 @@ DOMSelectors.form.addEventListener("submit", function () {
   event.preventDefault();
   let input = DOMSelectors.searchtxt.value;
   console.log(input);
-  getData2(input); //how do I make the "lines" part change when the user clicks the buttons listed above?
+  getDataT(input, "everything"); //how do I make the "lines" part change when the user clicks the buttons listed above?
 });
 
 async function getDataT(filterBy, sendVar) {
@@ -49,7 +49,7 @@ async function getDataT(filterBy, sendVar) {
     const everything = await response.json();
     console.log(everything);
     removeCard();
-    makeCards2(eval(sendVar));
+    makeCards2(eval(sendVar), 2);
     //any way to shorten this function (make authors, random and titles interchangable yknow)
   } catch (error) {
     console.log(error);
@@ -61,7 +61,7 @@ async function getData2(filter) {
     const everything = await response.json();
     console.log(everything);
     removeCard();
-    makeCards(everything);
+    makeCards(everything, 1);
   } catch (error) {
     console.log(error);
   }
@@ -78,28 +78,30 @@ async function getDataRandom(filterBy) {
   }
 }
 
-function makeCards(something) {
+function makeCards(something, which) {
   //works
-  something.forEach((name) =>
-    DOMSelectors.cards.insertAdjacentHTML(
-      "afterend",
-      `   <div class="Category cards">
+  if (which === 1) {
+    something.forEach((name) =>
+      DOMSelectors.cards.insertAdjacentHTML(
+        "afterend",
+        `   <div class="Category cards">
       <h2>${name.title}</h2>
       <p>${name.lines}</p>
       <h3 class="author">${name.author}</h3>
     </div>`
-    )
-  );
-}
-function makeCards2(something) {
-  something.forEach((name) =>
-    DOMSelectors.cards.insertAdjacentHTML(
-      "afterend",
-      `<div class="Category cards" >
+      )
+    );
+  } else if (which === 2) {
+    something.forEach((name) =>
+      DOMSelectors.cards.insertAdjacentHTML(
+        "afterend",
+        `<div class="Category cards" >
       <h3>${name}</h3>`
-    )
-  );
+      )
+    );
+  }
 }
+
 function makeCardsRandom(something) {
   something.forEach((name) =>
     DOMSelectors.cards.insertAdjacentHTML(
@@ -115,8 +117,7 @@ function makeCardsRandom(something) {
 
 function removeCard() {
   const cards = document.querySelectorAll(".Category");
-  const cardsArray = Array.from(cards);
-  cardsArray.forEach((cards) => {
+  cards.forEach((cards) => {
     cards.remove();
   });
-} //works
+}
