@@ -1,6 +1,8 @@
 //WAVE TOOL TO CHECK
 import "../styles/style.css";
-//let audio = new Audio("https://www.youtube.com/watch?v=PjX67xmthbg");
+
+let selector = "";
+
 const DOMSelectors = {
   button: document.querySelector(".button"),
   form: document.querySelector("#form"),
@@ -12,41 +14,51 @@ const DOMSelectors = {
   search: document.querySelector("#search"),
   searchtxt: document.querySelector("#query"),
 };
+getDataRandom("random");
 DOMSelectors.author.addEventListener("click", function () {
-  getData("author");
+  getDataT("author", "everything.authors");
+  selector = "author";
 });
 DOMSelectors.contentsbtn.addEventListener("click", function () {
-  getData("lines");
+  removeCard();
+  selector = "lines";
+  DOMSelectors.cards.insertAdjacentHTML(
+    "beforebegin",
+    `<div class="Category cards">
+    <h2>Please enter a line or word from a poem in the text bar above!</h2>
+    </div>`
+  );
 });
 DOMSelectors.titlebtn.addEventListener("click", function () {
-  getData("title");
+  getDataT("title", "everything.titles");
+  selector = "title";
 });
 DOMSelectors.randombtn.addEventListener("click", function () {
-  getDataRandom("random");
+  getDataRandom("random", "everything");
 });
 DOMSelectors.form.addEventListener("submit", function () {
   event.preventDefault();
   let input = DOMSelectors.searchtxt.value;
   console.log(input);
-  getData2("author", input);
+  getData2(input); //how do I make the "lines" part change when the user clicks the buttons listed above?
 });
 
-async function getData(filterBy) {
+async function getDataT(filterBy, sendVar) {
   try {
     const response = await fetch(`https://poetrydb.org/${filterBy}`);
-    const everything = await response.json(); //makes the data into a json object u can use
+    const everything = await response.json();
     console.log(everything);
     removeCard();
-    makeCards2(everything.titles);
+    makeCards2(eval(sendVar));
+    //any way to shorten this function (make authors, random and titles interchangable yknow)
   } catch (error) {
     console.log(error);
   }
 }
-
-async function getData2(filterBy, filter) {
+async function getData2(filter) {
   try {
-    const response = await fetch(`https://poetrydb.org/${filterBy}/${filter}`);
-    const everything = await response.json(); //makes the data into a json object u can use
+    const response = await fetch(`https://poetrydb.org/${selector}/${filter}`);
+    const everything = await response.json();
     console.log(everything);
     removeCard();
     makeCards(everything);
@@ -54,11 +66,10 @@ async function getData2(filterBy, filter) {
     console.log(error);
   }
 }
-//getData(`https://poetrydb.org/${filterBy}/${input}`);
 async function getDataRandom(filterBy) {
   try {
     const response = await fetch(`https://poetrydb.org/${filterBy}`);
-    const everything = await response.json(); //makes the data into a json object u can use
+    const everything = await response.json();
     console.log(everything);
     removeCard();
     makeCardsRandom(everything);
@@ -68,16 +79,15 @@ async function getDataRandom(filterBy) {
 }
 
 function makeCards(something) {
+  //works
   something.forEach((name) =>
     DOMSelectors.cards.insertAdjacentHTML(
       "afterend",
-      `<div class="Category cards" >
+      `   <div class="Category cards">
       <h2>${name.title}</h2>
-      <p>
-        ${name.lines}
-      </p>
-
-      <h3 class="author">${name.author}`
+      <p>${name.lines}</p>
+      <h3 class="author">${name.author}</h3>
+    </div>`
     )
   );
 }
@@ -91,16 +101,14 @@ function makeCards2(something) {
   );
 }
 function makeCardsRandom(something) {
-  something.forEach((array) =>
+  something.forEach((name) =>
     DOMSelectors.cards.insertAdjacentHTML(
       "afterend",
-      `<div class="Category cards" >
-      <h2>${array.title}</h2>
-      <p>
-        ${array.lines}
-      </p>
-
-      <h3 class="author">${array.author}</h3>`
+      `   <div class="Category cards">
+      <h2>${name.title}</h2>
+      <p>${name.lines}</p>
+      <h3 class="author">${name.author}</h3>
+    </div>`
     )
   );
 }
