@@ -13,21 +13,20 @@
     />
   </head>
   <body>
-    <h1 class="categories heading">POETRY API</h1>
-    <div class="categories">
+    <h1 role="banner" class="categories heading">POETRY API</h1>
+    <div class="categories" aria-label="Pick Filters">
       <button class="button btntop" id="Author">By Author</button>
       <button class="button btntop" id="Contents">By Keywords</button>
       <button class="button btntop" id="Title">By Titles</button>
       <button class="button btntop" id="Random">Random</button>
     </div>
-
-    <form id="form" aria-label="Search bar">
-      <label id="label" for="form">Search for anything! </label>
-      <input id="query" placeholder="Find a poem..." />
+    <form id="form" role="reigon" aria-label="Search bar">
+      <label id="label" for="query">Search for anything! </label>
+      <input id="query" name="input" placeholder="Find a poem..." />
       <button type="submit" id="search" value="Search button">Search</button>
     </form>
 
-    <div class="cards">
+    <div class="cards" role="reigon" aria-label="A generated poem">
       <h2>How to Use:</h2>
       <p>
         Firstly, select what you want to search by with the buttons at the top.

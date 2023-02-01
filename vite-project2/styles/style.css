@@ -110,10 +110,6 @@ body {
   text-align: left;
   height: 45px;
   width: 179px;
-  background-image: url("https://www.reonomy.com/wp-content/uploads/2018/06/icon_search_purple.png");
-  background-size: 20%;
-  background-position: right;
-  background-repeat: no-repeat;
   background-color: var(--details);
 }
 #query {

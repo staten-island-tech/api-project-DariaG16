@@ -88,7 +88,7 @@ function makeCards(something) {
   something.forEach((name) =>
     DOMSelectors.cards.insertAdjacentHTML(
       "afterend",
-      `   <div class="Category cards">
+      `   <div class="Category cards"  role="reigon" aria-label="A generated poem">
       <h2>${name.title}</h2>
       <p>${name.lines}</p>
       <h3 class="author">${name.author}</h3>
@@ -101,7 +101,7 @@ function makeCards2(something) {
   something.forEach((name) =>
     DOMSelectors.cards.insertAdjacentHTML(
       "afterend",
-      `<div class="Category cards" >  
+      `<div class="Category cards"  role="reigon" aria-label="A generated poem">  
       <h3>${name}</h3>`
     )
   );
@@ -110,7 +110,7 @@ function makeCardsRandom(something) {
   something.forEach((name) =>
     DOMSelectors.cards.insertAdjacentHTML(
       "afterend",
-      `   <div class="Category cards">
+      `   <div class="Category cards"  role="reigon" aria-label="A generated poem">
       <h2>${name.title}</h2>
       <p>${name.lines}</p>
       <h3 class="author">${name.author}</h3>
