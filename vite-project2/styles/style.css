@@ -101,16 +101,18 @@ body {
   border-radius: 20px;
   border: var(--details) solid 3px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 #search {
   all: unset;
+  color: var(--cardBacco);
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  text-align: left;
+  height: 45px;
+  width: 179px;
   background-image: url("https://www.reonomy.com/wp-content/uploads/2018/06/icon_search_purple.png");
-  background-size: 80%;
-  background-position: center;
+  background-size: 20%;
+  background-position: right;
   background-repeat: no-repeat;
   background-color: var(--details);
 }

@@ -15,10 +15,12 @@ const DOMSelectors = {
   searchtxt: document.querySelector("#query"),
 };
 getDataRandom("random");
+
 DOMSelectors.author.addEventListener("click", function () {
-  getDataT("author", "everything.authors");
+  getData("author", "everything.authors");
   selector = "author";
 });
+
 DOMSelectors.contentsbtn.addEventListener("click", function () {
   removeCard();
   selector = "lines";
@@ -29,39 +31,43 @@ DOMSelectors.contentsbtn.addEventListener("click", function () {
     </div>`
   );
 });
+
 DOMSelectors.titlebtn.addEventListener("click", function () {
-  getDataT("title", "everything.titles");
+  getData("title", "everything.titles");
   selector = "title";
 });
+
 DOMSelectors.randombtn.addEventListener("click", function () {
   getDataRandom("random", "everything");
 });
+
 DOMSelectors.form.addEventListener("submit", function () {
   event.preventDefault();
   let input = DOMSelectors.searchtxt.value;
   console.log(input);
-  getDataT(input, "everything"); //how do I make the "lines" part change when the user clicks the buttons listed above?
+  getDataSearch(input);
 });
 
-async function getDataT(filterBy, sendVar) {
+async function getData(filterBy, sendVar) {
   try {
     const response = await fetch(`https://poetrydb.org/${filterBy}`);
     const everything = await response.json();
     console.log(everything);
     removeCard();
-    makeCards2(eval(sendVar), 2);
+    makeCards2(eval(sendVar));
     //any way to shorten this function (make authors, random and titles interchangable yknow)
   } catch (error) {
     console.log(error);
   }
 }
-async function getData2(filter) {
+
+async function getDataSearch(filter) {
   try {
     const response = await fetch(`https://poetrydb.org/${selector}/${filter}`);
     const everything = await response.json();
     console.log(everything);
     removeCard();
-    makeCards(everything, 1);
+    makeCards(everything);
   } catch (error) {
     console.log(error);
   }
@@ -78,30 +84,28 @@ async function getDataRandom(filterBy) {
   }
 }
 
-function makeCards(something, which) {
-  //works
-  if (which === 1) {
-    something.forEach((name) =>
-      DOMSelectors.cards.insertAdjacentHTML(
-        "afterend",
-        `   <div class="Category cards">
+function makeCards(something) {
+  something.forEach((name) =>
+    DOMSelectors.cards.insertAdjacentHTML(
+      "afterend",
+      `   <div class="Category cards">
       <h2>${name.title}</h2>
       <p>${name.lines}</p>
       <h3 class="author">${name.author}</h3>
     </div>`
-      )
-    );
-  } else if (which === 2) {
-    something.forEach((name) =>
-      DOMSelectors.cards.insertAdjacentHTML(
-        "afterend",
-        `<div class="Category cards" >
-      <h3>${name}</h3>`
-      )
-    );
-  }
+    )
+  );
 }
 
+function makeCards2(something) {
+  something.forEach((name) =>
+    DOMSelectors.cards.insertAdjacentHTML(
+      "afterend",
+      `<div class="Category cards" >  
+      <h3>${name}</h3>`
+    )
+  );
+}
 function makeCardsRandom(something) {
   something.forEach((name) =>
     DOMSelectors.cards.insertAdjacentHTML(
